@@ -10,42 +10,45 @@ on:
   #allows you to run this workflow manually from the actions tab
   workflow_dispatch:
   
-  jobs:
-    aws_cdk:
-      runs-on: ubuntu-latest
-	      steps:
-	      - name: Checkout
-	        uses: actions/checkout@v2
-	      - name: Configure AWS credentials
-	        uses: aws-actions/configure-aws-credentials@v1
-          with:
-		        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-		        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-		        aws-region: eu-north-1
-		        role-to-assume: arn:aws:iam::954976321623:role/gitHubRole
-		        role-session-name: samplerolesession
+jobs:
+ aws_cdk:
+  runs-on: ubuntu-latest
+ steps:
+ - name: Checkout
+   uses: actions/checkout@v2
+     
+ - name: Configure AWS credentials
+   uses: aws-actions/configure-aws-credentials@v1
+   with:
+      aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      aws-region: eu-north-1
+      role-to-assume: arn:aws:iam::954976321623:role/gitHubRole
+      role-session-name: samplerolesession
 		   
-	      - name: install npm
-	        run: 'sudo apt update -y && sudo apt install nodejs npm -y'
+ - name: install npm
+   run: 'sudo apt update -y && sudo apt install nodejs npm -y'
 		
-	      - name: Install AWS CDK
-		      run: 'sudo npm install -g aws-cdk'
-		    - name: Install requirements 
-		      run: 'pip3 install -r requirements.txt'
-		      working-directory:
+ - name: Install AWS CDK
+   run: 'sudo npm install -g aws-cdk'
+ - name: Install requirements 
+   run: 'pip3 install -r requirements.txt'
+   working-directory:
 		 
-		    - name: CDK Synth
-		      run: cdk synth
-		      working-directory:
+ - name: CDK Synth
+   run: cdk synth
+   working-directory:
 		 
-		    - name: CDK bootstrap
-		      run: cdk bootstrap
-		      working-directory:
+ - name: CDK bootstrap
+   run: cdk bootstrap
+   working-directory:
 		 
-		    - name: CDK Deploy
-		      run: cdk deploy --require-approval never
-		      working-directory:
+ - name: CDK Deploy
+   run: cdk deploy --require-approval never
+   working-directory:
 		 
-		    #-name: CDK Destroy
-		      #run: cdk destory --force
-		      #working-directory:
+ #-name: CDK Destroy
+  #run: cdk destory --force
+  #working-directory:
+ #run: cdk destory --force
+ #working-directory:
