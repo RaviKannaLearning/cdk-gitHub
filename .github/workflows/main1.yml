@@ -1,4 +1,4 @@
-name: Deploy AWS CDK
+name: Deploy AWS CDK OPC
 
 #contrls when the action will run
 
@@ -12,7 +12,7 @@ on:
   #allows you to run this workflow manually from the actions tab
   workflow_dispatch:
  
-permission:
+permissions:
   id-token: write
 jobs:
  aws_cdk:
