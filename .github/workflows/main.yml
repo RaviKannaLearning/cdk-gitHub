@@ -46,5 +46,5 @@ jobs:
     working-directory: .
 
   - name: CDK Destroy
-    run: cdk destory --force
+    run: cdk destroy --force
     working-directory: .
