@@ -1,6 +1,7 @@
 name: Deploy AWS CDK
 
 #contrls when the action will run
+
 on:
   #push:
      #branches: [ main ]
@@ -10,7 +11,9 @@ on:
   
   #allows you to run this workflow manually from the actions tab
   workflow_dispatch:
-  
+ 
+permission:
+  id-token: write
 jobs:
  aws_cdk:
   runs-on: ubuntu-latest
