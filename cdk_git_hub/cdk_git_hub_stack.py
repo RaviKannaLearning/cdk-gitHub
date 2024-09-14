@@ -20,7 +20,7 @@ class CdkGitHubStack(Stack):
         )
 
         bucket = s3.Bucket(self, "MyfirstBucket", versioned=True,
-                           bucket_name="demo-bucket-learning",
+                           bucket_name="demo-bucket-learning123",
                            block_public_access=s3.BlockPublicAccess.BLOCK_ALL)
 
         function = lambda_function.Function(self, "DemoCDKFunction",
